@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
@@ -21,6 +22,9 @@ public class KeyPhoneFrame extends JFrame {
 	private static JTextField text_field;
 	private static JButton connect_button;
 	private static JTextArea text_area;
+	private static Console console;
+	private static final int CONSOLE_WIDTH = 200;
+	private static final int CONSOLE_LENGTH = 400;
 	
 	public KeyPhoneFrame() {
 		super("KeyPhone");
@@ -28,7 +32,7 @@ public class KeyPhoneFrame extends JFrame {
 		setSize(WIDTH, HEIGHT);
 		setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		setResizable(false);
-		setLayout(new BorderLayout());
+		setLayout(new GridLayout(1, 2));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setUp();
 		
@@ -48,6 +52,8 @@ public class KeyPhoneFrame extends JFrame {
 		settings_panel.add(text_area, BorderLayout.NORTH);
 		settings_panel.add(text_field, BorderLayout.CENTER);
 		settings_panel.add(connect_button, BorderLayout.SOUTH);
+		
+		console = new Console();
 	
 		add(settings_panel);
 	}
