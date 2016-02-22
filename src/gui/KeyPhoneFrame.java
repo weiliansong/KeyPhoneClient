@@ -15,15 +15,15 @@ import javax.swing.JTextField;
 public class KeyPhoneFrame extends JFrame {
 
 	private static final long serialVersionUID = -3576179975881750942L;
-	private static final int WIDTH = 400;
-	private static final int HEIGHT = 200;
-	private static final int TEXT_WINDOW_WIDTH = 200;
+	private static final int WIDTH = ;
+	private static final int HEIGHT = 600;
+	private static final int TEXT_WINDOW_WIDTH = 400;
 	private static final int TEXT_WINDOW_LENGTH = 400;
 	private static final int SIDE_BAR_WIDTH = 200;
 	private static final int SIDE_BAR_LENGTH = 200;
 	
 	private SideBar side_bar;
-	private TextContainer text_container;
+	private static TextContainer text_container;
 	
 	public KeyPhoneFrame() {
 		super("KeyPhone");
@@ -35,6 +35,8 @@ public class KeyPhoneFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setUpTextWindow();
+		int[] test = {111, 111, 1111};
+		side_bar.addNewContact(new ContactButton("John Smith", test));
 		
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -44,8 +46,12 @@ public class KeyPhoneFrame extends JFrame {
 		side_bar = new SideBar(SIDE_BAR_WIDTH, SIDE_BAR_LENGTH);
 		text_container = new TextContainer(TEXT_WINDOW_WIDTH, TEXT_WINDOW_LENGTH);
 		
-		add(side_bar);
-		add(text_container);
+		add(side_bar, BorderLayout.WEST);
+		add(text_container, BorderLayout.EAST);
+	}
+	
+	public static void changeTextWindow(TextWindow window) {
+		text_container.replaceWindow(window);
 	}
 	
 //	private void windowListener() {

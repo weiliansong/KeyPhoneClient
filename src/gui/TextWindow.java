@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +32,7 @@ public class TextWindow extends JPanel implements ActionListener {
 		text_area.setLineWrap(true);
 		text_area.setAutoscrolls(true);
 		
+		text_field = new JTextField();
 		text_field.addActionListener(this);
 		
 		add(text_area, BorderLayout.NORTH);
@@ -42,7 +44,9 @@ public class TextWindow extends JPanel implements ActionListener {
 	}
 	
 	private void addSentMsg(String msg) {
-		
+		text_area.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		text_area.append(msg + '\n');
+		sent[sent.length] = msg;
 	}
 
 	@Override

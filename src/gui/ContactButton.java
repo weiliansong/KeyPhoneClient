@@ -24,6 +24,6 @@ public class ContactButton extends JButton implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
+		KeyPhoneFrame.changeTextWindow(window);
 	}
 }

@@ -13,6 +13,7 @@ public class TextContainer extends JPanel {
 	}
 	
 	public void replaceWindow(TextWindow window) {
-		
+		removeAll();
+		add(window);
 	}
 }
