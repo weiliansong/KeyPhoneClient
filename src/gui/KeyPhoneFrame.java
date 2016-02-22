@@ -17,16 +17,13 @@ public class KeyPhoneFrame extends JFrame {
 	private static final long serialVersionUID = -3576179975881750942L;
 	private static final int WIDTH = 400;
 	private static final int HEIGHT = 200;
-	private static final int CONSOLE_WIDTH = 200;
-	private static final int CONSOLE_LENGTH = 400;
-	private static final int TEXT_WIDTH = 200;
-	private static final int TEXT_LENGTH = 400;
+	private static final int TEXT_WINDOW_WIDTH = 200;
+	private static final int TEXT_WINDOW_LENGTH = 400;
+	private static final int SIDE_BAR_WIDTH = 200;
+	private static final int SIDE_BAR_LENGTH = 200;
 	
-	private static JPanel text_panel;
-	private static JTextField text_field;
-	private static JButton connect_button;
-	private static JTextArea text_area;
-	private static Console console;
+	private SideBar side_bar;
+	private TextContainer text_container;
 	
 	public KeyPhoneFrame() {
 		super("KeyPhone");
@@ -34,36 +31,21 @@ public class KeyPhoneFrame extends JFrame {
 		setSize(WIDTH, HEIGHT);
 		setMinimumSize(new Dimension(WIDTH, HEIGHT));
 		setResizable(false);
-		setLayout(new GridLayout(1, 2));
+		setLayout(new BorderLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setUpTextWindow();
-		setUpConsoleWindow();
 		
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}
 	
 	private void setUpTextWindow() {
-		text_panel = new JPanel();
-		text_panel.setLayout(new BorderLayout());
-		connect_button = new JButton("Connect");
-		text_field = new JTextField(15);
-		text_area = new JTextArea();
-		text_area.setEditable(false);
-		text_area.setLineWrap(false);
+		side_bar = new SideBar(SIDE_BAR_WIDTH, SIDE_BAR_LENGTH);
+		text_container = new TextContainer(TEXT_WINDOW_WIDTH, TEXT_WINDOW_LENGTH);
 		
-		text_panel.add(text_area, BorderLayout.NORTH);
-		text_panel.add(text_field, BorderLayout.CENTER);
-		text_panel.add(connect_button, BorderLayout.SOUTH);
-	
-		add(text_panel);
-	}
-	
-	private void setUpConsoleWindow() {
-		console = new Console(CONSOLE_WIDTH, CONSOLE_LENGTH);
-		
-		add(console);
+		add(side_bar);
+		add(text_container);
 	}
 	
 //	private void windowListener() {

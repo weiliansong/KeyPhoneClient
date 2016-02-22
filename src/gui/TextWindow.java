@@ -15,14 +15,14 @@ public class TextWindow extends JPanel implements ActionListener {
 	private static final long serialVersionUID = -8678840278065480426L;
 	private String[] received;
 	private String[] sent;
-	private String m_name;
-	private int[] m_phone_number;
+	private String contact_name;
+	private int[] contact_number;
 	private JTextArea text_area;
 	private JTextField text_field;
 	
 	public TextWindow(String name, int[] phone_number) {
-		m_name = name;
-		m_phone_number = phone_number;
+		contact_name = name;
+		contact_number = phone_number;
 		
 		setLayout(new BorderLayout());
 		
