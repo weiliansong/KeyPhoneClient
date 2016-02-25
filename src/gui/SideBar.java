@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -15,9 +16,17 @@ public class SideBar extends JPanel {
 	public SideBar(int width, int length) {
 		contacts = new ArrayList<ContactButton>();
 		setSize(width, length);
+		setLayout(new FlowLayout());
 	}
 	
 	public void addNewContact(ContactButton contact) {
 		contacts.add(contact);
+		updateContact();
+	}
+	
+	private void updateContact() {
+		for(ContactButton contact : contacts) {
+			add(contact);
+		}
 	}
 }

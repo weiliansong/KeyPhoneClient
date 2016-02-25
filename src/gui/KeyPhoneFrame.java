@@ -15,12 +15,12 @@ import javax.swing.JTextField;
 public class KeyPhoneFrame extends JFrame {
 
 	private static final long serialVersionUID = -3576179975881750942L;
-	private static final int WIDTH = ;
+	private static final int WIDTH = 900;
 	private static final int HEIGHT = 600;
-	private static final int TEXT_WINDOW_WIDTH = 400;
-	private static final int TEXT_WINDOW_LENGTH = 400;
-	private static final int SIDE_BAR_WIDTH = 200;
-	private static final int SIDE_BAR_LENGTH = 200;
+	private static final int TEXT_WINDOW_WIDTH = 600;
+	private static final int TEXT_WINDOW_LENGTH = 600;
+	private static final int SIDE_BAR_WIDTH = 600;
+	private static final int SIDE_BAR_LENGTH = 300;
 	
 	private SideBar side_bar;
 	private static TextContainer text_container;
