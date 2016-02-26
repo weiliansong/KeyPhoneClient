@@ -21,13 +21,14 @@ public class TextWindow extends JPanel implements ActionListener {
 	private JTextArea text_area;
 	private JTextField text_field;
 	
-	public TextWindow(String name, int[] phone_number) {
+	public TextWindow(String name, int[] phone_number, int width, int length) {
 		contact_name = name;
 		contact_number = phone_number;
 		
 		setLayout(new BorderLayout());
 		
 		text_area = new JTextArea();
+		text_area.setSize(width, length);
 		text_area.setEditable(false);
 		text_area.setLineWrap(true);
 		text_area.setAutoscrolls(true);

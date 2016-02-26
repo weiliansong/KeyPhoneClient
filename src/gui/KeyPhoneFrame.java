@@ -9,8 +9,10 @@ import java.awt.event.WindowFocusListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class KeyPhoneFrame extends JFrame {
 
@@ -36,7 +38,7 @@ public class KeyPhoneFrame extends JFrame {
 		
 		setUpTextWindow();
 		int[] test = {111, 111, 1111};
-		side_bar.addNewContact(new ContactButton("John Smith", test));
+		side_bar.addNewContact(new ContactButton("John Smith", test, TEXT_WINDOW_WIDTH, TEXT_WINDOW_LENGTH));
 		
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -47,6 +49,7 @@ public class KeyPhoneFrame extends JFrame {
 		text_container = new TextContainer(TEXT_WINDOW_WIDTH, TEXT_WINDOW_LENGTH);
 		
 		add(side_bar, BorderLayout.WEST);
+		add(new JSeparator(SwingConstants.VERTICAL));
 		add(text_container, BorderLayout.EAST);
 	}
 	
