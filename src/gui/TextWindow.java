@@ -4,8 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -14,23 +16,24 @@ public class TextWindow extends JPanel implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = -8678840278065480426L;
-	private String[] received;
-	private String[] sent;
+	private ArrayList<String> received;
+	private ArrayList<String> sent;
 	private String contact_name;
 	private int[] contact_number;
-	private JTextArea text_area;
+	private JScrollPane text_area;
 	private JTextField text_field;
 	
 	public TextWindow(String name, int[] phone_number, int width, int length) {
 		contact_name = name;
 		contact_number = phone_number;
 		
+		received = new ArrayList<String>();
+		sent = new ArrayList<String>();
+		
 		setLayout(new BorderLayout());
 		
-		text_area = new JTextArea();
+		text_area = new JScrollPane();
 		text_area.setSize(width, length);
-		text_area.setEditable(false);
-		text_area.setLineWrap(true);
 		text_area.setAutoscrolls(true);
 		
 		text_field = new JTextField();
@@ -45,9 +48,9 @@ public class TextWindow extends JPanel implements ActionListener {
 	}
 	
 	private void addSentMsg(String msg) {
-		text_area.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		text_area.append(msg + '\n');
-		sent[sent.length] = msg;
+		JTextArea curr_msg = new JTextArea();
+		curr_msg.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		sent.add(msg);
 	}
 
 	@Override
