@@ -19,8 +19,7 @@ public class ContactButton extends JButton implements ActionListener{
 		contact_name = name;
 		contact_number = phone_number;
 		window = new TextWindow(name, phone_number, width, length);
-		setText(contact_name + " " + 
-				contact_number[0] + "-" + contact_number[1] + "-" + contact_number[2]);
+		setText(contact_name + " " + contact_number[0] + "-" + contact_number[1] + "-" + contact_number[2]);
 		addActionListener(this);
 	}
 
