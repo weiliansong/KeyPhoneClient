@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,6 +14,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import networking.Server;
 
 public class KeyPhoneFrame extends JFrame {
 
@@ -42,6 +45,13 @@ public class KeyPhoneFrame extends JFrame {
 		
 		setVisible(true);
 		setLocationRelativeTo(null);
+		
+		try {
+			(new Thread(new Server(10000))).start();	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void setUpTextWindow() {

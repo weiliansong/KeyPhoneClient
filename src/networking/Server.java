@@ -12,6 +12,7 @@ public class Server implements Runnable {
 	private Socket client_socket;
 	private PrintWriter out;
 	private BufferedReader in;
+	private static final int MSG_QUEUED = 1;
 	
 	public Server(int port_number) throws IOException {
 		server_socket = new ServerSocket(port_number);
@@ -29,8 +30,13 @@ public class Server implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
+			try {
+				String inputLine = in.readLine();
+				System.out.println("Msg Received");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
