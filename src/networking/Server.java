@@ -6,33 +6,39 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.cert.Certificate;
+
+import javax.net.ssl.SSLServerSocketFactory;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 
 public class Server implements Runnable {
-	private ServerSocket server_socket;
-	private Socket client_socket;
-	private PrintWriter out;
-	private BufferedReader in;
-	private static final int MSG_QUEUED = 1;
+	private ServerSocket ss;
+	private boolean server_status;
 	
 	public Server(int port_number) throws IOException {
-		server_socket = new ServerSocket(port_number);
+		server_status = true;
+
+		System.setProperty("javax.net.ssl.keyStore", "lfkeystore2");
+		System.setProperty("javax.net.ssl.keyStorePassword", "wshr.ut");
+		
+		SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
+		ss = ssf.createServerSocket(port_number);
+	}
+	
+	public void terminate() {
+		server_status = false;
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while(true) {
+		while(server_status) {
 			try {
-				client_socket = server_socket.accept();
-				out = new PrintWriter(client_socket.getOutputStream(), true);
-				in  = new BufferedReader(new InputStreamReader(client_socket.getInputStream()));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				String inputLine = in.readLine();
-				System.out.println("Msg Received");
+				Socket s = ss.accept();
+				SSLSession session = ((SSLSocket) s).getSession();
+				Certificate[] cchain2 = session.getLocalCertificates();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
