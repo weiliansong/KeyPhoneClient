@@ -1,9 +1,6 @@
 package networking;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.cert.Certificate;
@@ -11,7 +8,6 @@ import java.security.cert.Certificate;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
 
 public class Server implements Runnable {
 	private ServerSocket ss;
@@ -39,6 +35,8 @@ public class Server implements Runnable {
 				Socket s = ss.accept();
 				SSLSession session = ((SSLSocket) s).getSession();
 				Certificate[] cchain2 = session.getLocalCertificates();
+				ClientHandler.respond(s);
+				s.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
