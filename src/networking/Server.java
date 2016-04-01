@@ -35,7 +35,8 @@ public class Server implements Runnable {
 				Socket s = ss.accept();
 				SSLSession session = ((SSLSocket) s).getSession();
 				Certificate[] cchain2 = session.getLocalCertificates();
-				ClientHandler.respond(s);
+				Runnable handler = new ClientHandler(s);
+				new Thread(handler).start(); 
 				s.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

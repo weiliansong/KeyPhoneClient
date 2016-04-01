@@ -6,27 +6,24 @@ import java.net.Socket;
 
 import org.json.simple.JSONObject;
 
-public class ClientHandler implements Runnable {
-	private Socket s;
-
-	public ClientHandler(Socket s) {
-		this.s = s;
-	}
+public class Transporter {
 	
-	@Override
-	@SuppressWarnings("unchecked")
-	public void run() {
+	public static boolean send(String msg, String phone_num, int status) {
 		try {
+			Socket s = new Socket();
 			OutputStream out = s.getOutputStream();
 			JSONObject obj = new JSONObject();
-			obj.put("first", "lol");
-			obj.put("second", new Integer(100));
-			out.write(obj.toString().getBytes());
-			out.flush();
-			out.close();
+			obj.put("ID", TextProtocol.NEW_MSG);
+			obj.put("phone_num", phone_num);
+			obj.put("msg", msg);
+			
+			out.write(obj.toJSONString().getBytes());
+			
+			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 	}
 }

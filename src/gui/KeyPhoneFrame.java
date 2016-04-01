@@ -41,7 +41,7 @@ public class KeyPhoneFrame extends JFrame {
 		
 		setUpTextWindow();
 		int[] test = {111, 111, 1111};
-		side_bar.addNewContact(new ContactButton("John Smith", test, TEXT_WINDOW_WIDTH, TEXT_WINDOW_LENGTH));
+//		side_bar.addNewContact(new ContactButton("John Smith", test, TEXT_WINDOW_WIDTH, TEXT_WINDOW_LENGTH));
 		
 		setVisible(true);
 		setLocationRelativeTo(null);
