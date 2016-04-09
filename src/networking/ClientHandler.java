@@ -9,18 +9,27 @@ import java.net.Socket;
 
 import org.json.simple.JSONObject;
 
-public class ClientHandler {
+public class ClientHandler implements Runnable {
+	private Socket s;
+
+	public ClientHandler(Socket s) {
+		this.s = s;
+	}
+	
+	@Override
 	@SuppressWarnings("unchecked")
-	public static void respond(Socket s) throws IOException {
-//		PrintWriter pw = new PrintWriter(s.getOutputStream());
-		BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
-//		JSONObject obj = new JSONObject();
-//		obj.put("first", "lol");
-//		obj.put("second", new Integer(100));
-//		pw.println(obj.toString()); 
-//		pw.flush();
-		System.out.println(br.readLine());
-		br.close();
-//		pw.close();
+	public void run() {
+		try {
+			OutputStream out = s.getOutputStream();
+			JSONObject obj = new JSONObject();
+			obj.put("first", "lol");
+			obj.put("second", new Integer(100));
+			out.write(obj.toString().getBytes());
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
