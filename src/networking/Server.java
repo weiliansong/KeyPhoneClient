@@ -16,9 +16,9 @@ public class Server implements Runnable {
 	public Server(int port_number) throws IOException {
 		server_status = true;
 
-		System.setProperty("javax.net.ssl.keyStore", "lfkeystore2");
+		System.setProperty("javax.net.ssl.keyStore", "/home/wsong/keystore.jks");
 		System.setProperty("javax.net.ssl.keyStorePassword", "wshr.ut");
-		
+
 		SSLServerSocketFactory ssf = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
 		ss = ssf.createServerSocket(port_number);
 	}
@@ -32,10 +32,13 @@ public class Server implements Runnable {
 		// TODO Auto-generated method stub
 		while(server_status) {
 			try {
+				System.out.println("Server Now Listening...");
 				Socket s = ss.accept();
 				SSLSession session = ((SSLSocket) s).getSession();
 				Certificate[] cchain2 = session.getLocalCertificates();
+				System.out.println("Receiving message from client...");
 				ClientHandler.respond(s);
+				System.out.println("Closing Connection...");
 				s.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
